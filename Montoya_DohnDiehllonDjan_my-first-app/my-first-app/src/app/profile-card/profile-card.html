@@ -1,0 +1,19 @@
+<article class="profile-card">
+  <header>
+    <h3>{{ cardTitle() }}</h3>
+    @if (badge()) {
+      <span class="badge">{{ badge() }}</span>
+    }
+  </header>
+  <p>{{ description() }}</p>
+  @if (tags().length) {
+    <ul class="tags">
+      @for (tag of tags(); track tag) {
+        <li class="tag">{{ tag }}</li>
+      }
+    </ul>
+  }
+  @if (link()) {
+    <a class="repo" [href]="link()" target="_blank" rel="noopener">View repository</a>
+  }
+</article>

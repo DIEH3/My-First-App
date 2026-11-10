@@ -1,0 +1,94 @@
+<main class="page">
+  <header class="hero">
+    <div class="wave" role="img" aria-label="Sound wave that grows louder as the button below is clicked">
+      @for (b of bars; track $index) {
+        <span class="bar" [style.height.%]="barHeight(b)" [style.animation-delay.ms]="$index * 22"></span>
+      }
+    </div>
+
+    <h1 class="name">
+      <span>{{ firstName }}</span>
+      <span>{{ lastName }}</span>
+    </h1>
+    <p class="role">{{ role }}</p>
+    <p class="contact">
+      {{ location }} &nbsp;|&nbsp; {{ phone }} &nbsp;|&nbsp;
+      <a [href]="'mailto:' + email">{{ email }}</a>
+    </p>
+  </header>
+
+  <section class="block" aria-labelledby="about">
+    <h2 id="about">About</h2>
+    <div class="body">
+      <p class="lead">{{ profile }}</p>
+      <app-profile-card
+        cardTitle="A Little About Me"
+        description="I am a student learning to build modern web applications with Angular."
+        [tags]="['Angular', 'Reusable component']" />
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="stack">
+    <h2 id="stack">Tech stack</h2>
+    <div class="body stack">
+      @for (group of stack; track group.title) {
+        <div class="group">
+          <h3>{{ group.title }}</h3>
+          <ul>
+            @for (item of group.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="path">
+    <h2 id="path">Learning path</h2>
+    <ol class="body path">
+      @for (step of roadmap; track step.label) {
+        <li [class]="'step ' + step.status">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <strong>{{ step.label }}</strong>
+            <span class="status">{{ step.status === 'done' ? 'Learned' : step.status === 'now' ? 'Learning now' : 'Up next' }}</span>
+            <p>{{ step.detail }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </section>
+
+  <section class="block" aria-labelledby="work">
+    <h2 id="work">Projects</h2>
+    <div class="body projects">
+      @for (p of projects; track p.title) {
+        <app-profile-card [cardTitle]="p.title" [description]="p.description" [tags]="p.tags" [link]="p.link" />
+      }
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="code">
+    <h2 id="code">How I write components</h2>
+    <div class="body">
+      <pre class="code" tabindex="0"><code>{{ snippet }}</code></pre>
+    </div>
+  </section>
+
+  <section class="block interaction" aria-labelledby="play">
+    <h2 id="play">Turn it up</h2>
+    <div class="body">
+      <p class="message" aria-live="polite">{{ message() }}</p>
+      <p class="level">{{ levelLabel() }}</p>
+      <div class="actions">
+        <button type="button" (click)="showMessage()">Turn it up</button>
+        <button type="button" class="ghost" (click)="turnDown()">Turn it down</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <a [href]="'mailto:' + email">{{ email }}</a>
+  </footer>
+</main>

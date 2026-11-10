@@ -1,0 +1,126 @@
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 28px 64px;
+}
+
+/* Hero: the AM-style waveform is the one memorable element */
+.hero { padding-bottom: 48px; border-bottom: 1px solid var(--grey-3); }
+
+.wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 220px;
+  margin-bottom: 40px;
+}
+
+.bar {
+  flex: 1;
+  max-width: 14px;
+  min-height: 4px;
+  background: var(--white);
+  transition: height 0.35s ease;
+  animation: rise 0.9s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+@keyframes rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+.name {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3.2rem, 14vw, 9rem);
+  font-weight: 900;
+  font-stretch: 62%;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.role { margin: 22px 0 6px; font-size: 1.25rem; font-weight: 300; font-stretch: 125%; }
+.contact { margin: 0; color: var(--grey-1); overflow-wrap: anywhere; }
+
+/* Sections: heading in the left column, content on the right */
+.block {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 32px;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--grey-3);
+}
+
+.block h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.1;
+}
+
+.body { margin: 0; min-width: 0; }
+.lead { margin-top: 0; font-size: 1.2rem; max-width: 60ch; }
+
+/* Tech stack */
+.stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; }
+.group h3 { margin: 0 0 8px; font-size: 1rem; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid var(--white); }
+.group ul { margin: 0; padding: 0; list-style: none; color: var(--grey-1); }
+.group li { padding: 3px 0; }
+
+/* Learning path: a real sequence, so the line connects the steps */
+.path { list-style: none; padding: 0; position: relative; }
+.path::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--grey-3); }
+.step { display: flex; gap: 20px; padding: 0 0 22px; position: relative; }
+.step p { margin: 2px 0 0; color: var(--grey-2); }
+.dot { flex: none; width: 15px; height: 15px; margin-top: 5px; border: 2px solid var(--white); background: var(--black); border-radius: 50%; z-index: 1; }
+.step.done .dot { background: var(--white); }
+.step.next .dot { border-color: var(--grey-2); }
+.step.next strong { color: var(--grey-2); }
+.status { margin-left: 12px; color: var(--grey-2); font-size: 0.85rem; }
+.step.now .status { color: var(--white); }
+
+.projects { display: grid; gap: 16px; }
+
+/* Code block */
+.code {
+  margin: 0;
+  padding: 22px;
+  overflow-x: auto;
+  border: 1px solid var(--grey-3);
+  background: #0f0f0f;
+  color: var(--grey-1);
+  font: 0.92rem/1.7 'Courier New', Courier, monospace;
+}
+
+/* Interaction */
+.message { margin: 0; font-size: 1.4rem; font-weight: 700; font-stretch: 85%; }
+.level { margin: 4px 0 20px; color: var(--grey-2); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+button {
+  border: 2px solid var(--white);
+  border-radius: 0;
+  padding: 10px 20px;
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  font: 700 0.95rem 'Archivo', Arial, sans-serif;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+button:hover { background: transparent; color: var(--white); }
+button.ghost { background: transparent; color: var(--white); }
+button.ghost:hover { background: var(--white); color: var(--black); }
+
+.foot { padding-top: 36px; text-align: center; color: var(--grey-2); }
+
+@media (max-width: 720px) {
+  .page { padding: 28px 18px 48px; }
+  .wave { height: 150px; gap: 3px; }
+  .block { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+  .stack { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar { animation: none; transition: none; }
+}
